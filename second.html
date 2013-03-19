@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<!-- Тег meta для указания кодировки -->
+	<meta charset="utf-8">
+	
+</head>
+<body>
+	
+	<script>
+
+	function unique(arr) {
+		var obj = {};
+
+		for(i=0; i<arr.length; i++){
+		var str = arr[i];
+		obj[str] = true;
+		}
+		return Object.keys(obj);
+	}
+
+	function addClass(obj, cls) {
+		var classes = obj.className.split(' ');
+
+		for (i=0; i<classes.length; i++){
+			if(classes[i] == cls) return;
+		}
+		classes.push(cls);
+
+		obj.className = classes.join(' ');
+	}
+
+	function camelize(str) {
+		var arr = str.split('-');
+
+		for (var i=0; i<arr.length; i++) {
+			arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+		}
+		return arr.join('');
+	}
+
+	function removeClass(obj, cls) {
+		var classes = obj.className.split(' ');
+
+		for (i=0; i<classes.length; i++) {
+			if(classes[i] == cls) {
+				classes.splice(i, 1);
+				i--
+			}
+			obj.className = classes.join(' ');
+		}
+	}
+
+	function filterRangeInPlace(arr, a, b) {
+		for(i=0; i<arr.length; i++) {
+			if(arr[i] < a || arr[i] >b){
+				arr.splice(i--, 1);
+				
+			}
+		}
+	}
+
+	function getWeekDay(date) {
+		var day = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+		return day[ date.getDay() ];
+	}
+
+	function getLastDayInMonth(year, month) {
+		var date = new Date(year, month+1, 0);
+		return date.getDate();
+	}
+	
+	function getTimeOfWork() {
+		var now = new Date;
+		var today = new Date(now.getFullYear(), now.getMonth());
+		
+		var diff = now - today;
+		
+		var tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+
+		var dayEnd = tomorrow - now;
+
+
+		return alert(Math.round(diff / 1000) + " и до конца дня " + Math.round(dayEnd / 1000));
+	} 
+
+	//!!Это нужно удалить
+
+	function floorMath(x) { return Math.floor(x); }
+	function floorXor(x) { return x^0; }
+ 
+	function bench(f) {
+	var d = new Date();
+	for (var i=0.5; i<1000000; i++) f(i);
+
+	return new Date() - d;
+	}
+ 
+	alert('Время floorMath: ' + bench(floorMath) + 'мс');
+
+	alert('Время floorXor: ' + bench(floorXor) + 'мс');
+
+
+
+
+
+
+    
+	</script>
+</body>
+</html>
